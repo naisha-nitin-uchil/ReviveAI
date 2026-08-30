@@ -10,7 +10,7 @@ Instead of treating every failed payment equally, ReviveAI analyzes transaction 
 
 ---
 
-## 🎯 Problem Statement
+# 🎯 Problem Statement
 
 Payment failures can result in significant revenue loss for merchants.
 
@@ -18,7 +18,7 @@ However, not every failed payment should be retried in the same way.
 
 Some failures may be temporary and worth retrying, while others may require customer action or should be stopped to avoid unnecessary recovery attempts.
 
-ReviveAI addresses this problem by using AI-driven recovery prediction and decision logic to determine:
+ReviveAI addresses this problem by determining:
 
 - Which failed payments have recovery potential
 - How likely a payment is to be recovered
@@ -29,14 +29,14 @@ ReviveAI addresses this problem by using AI-driven recovery prediction and decis
 
 ---
 
-## 💡 Proposed Solution
+# 💡 Proposed Solution
 
 ReviveAI combines machine learning, decision-agent logic, business guardrails, recovery simulation, audit logging, and an interactive dashboard into one revenue recovery workflow.
 
-The system follows this pipeline:
+### Recovery Pipeline
 
 ```text
-Failed Transactions
+Failed Transaction
         ↓
 Transaction Analysis
         ↓
