@@ -10,7 +10,7 @@ Instead of treating every failed payment equally, ReviveAI analyzes transaction 
 
 ---
 
-# 🎯 Problem Statement
+## 🎯 Problem Statement
 
 Payment failures can result in significant revenue loss for merchants.
 
@@ -29,9 +29,9 @@ ReviveAI addresses this problem by using AI-driven recovery prediction and decis
 
 ---
 
-# 💡 Proposed Solution
+## 💡 Proposed Solution
 
-ReviveAI combines machine learning, decision-agent logic, business guardrails, recovery simulation, and an interactive dashboard into one revenue recovery workflow.
+ReviveAI combines machine learning, decision-agent logic, business guardrails, recovery simulation, audit logging, and an interactive dashboard into one revenue recovery workflow.
 
 The system follows this pipeline:
 

@@ -224,6 +224,25 @@ decisions, recovery, audit = load_data()
 
 
 # ============================================================
+# FILTER RESET STATE
+# ============================================================
+
+# Streamlit does not allow changing a widget's session_state value
+# after that widget has already been instantiated. Instead of
+# modifying the multiselect values directly, we create fresh widget
+# keys whenever the user presses Reset All Filters.
+if "filter_version" not in st.session_state:
+    st.session_state["filter_version"] = 0
+
+
+def reset_filters():
+    st.session_state["filter_version"] += 1
+
+
+filter_version = st.session_state["filter_version"]
+
+
+# ============================================================
 # SIDEBAR
 # ============================================================
 
@@ -298,7 +317,7 @@ with st.sidebar:
         "Priority",
         priority_options,
         default=priority_options,
-        key="priority_filter",
+        key=f"priority_filter_{filter_version}",
         label_visibility="collapsed"
     )
 
@@ -324,7 +343,7 @@ with st.sidebar:
         "Failure Category",
         failure_options,
         default=failure_options,
-        key="failure_filter",
+        key=f"failure_filter_{filter_version}",
         label_visibility="collapsed"
     )
 
@@ -350,24 +369,18 @@ with st.sidebar:
         "Recovery Action",
         action_options,
         default=action_options,
-        key="action_filter",
+        key=f"action_filter_{filter_version}",
         label_visibility="collapsed"
     )
 
     st.divider()
 
     # Reset button
-
-    if st.button(
+    st.button(
         "🔄 Reset All Filters",
+        on_click=reset_filters,
         use_container_width=True
-    ):
-
-        st.session_state["priority_filter"] = priority_options
-        st.session_state["failure_filter"] = failure_options
-        st.session_state["action_filter"] = action_options
-
-        st.rerun()
+    )
 
     st.divider()
 
