@@ -1,212 +1,280 @@
-🤖 AI Decision System
+# 💰 ReviveAI
 
-ReviveAI uses a machine learning model to estimate the probability that a failed payment can be successfully recovered.
+## 🤖 AI-Powered Revenue Recovery Decision Agent
 
-The recovery probability is then passed to the decision agent.
+**🎯 Track:** Track 3 — AI Revenue Recovery  
+**🚀 Project:** ReviveAI
 
-The agent evaluates:
+---
 
-Recovery probability
-Failure category
-Failure reason
-Transaction characteristics
-Retry count
-Business recovery rules
+## 📌 Problem Statement
 
-Based on these signals, ReviveAI selects an appropriate recovery action.
+Failed payments create direct revenue loss for businesses. Not every failed transaction should be retried in the same way. Repeated retries can also increase customer friction and unnecessary payment attempts.
 
-Available Recovery Actions
-Retry
-Retry After Delay
-Send Payment Reminder
-Escalate
-Suggest Alternate Payment Method
-Stop Recovery
+ReviveAI addresses this problem by identifying failed transactions that have recovery potential, predicting the probability of successful recovery, selecting an appropriate recovery action, applying business guardrails, and tracking the simulated outcome through an audit trail.
 
-This allows the system to avoid blindly retrying every failed transaction.
+---
 
+## 💡 Proposed Solution
+
+ReviveAI is an AI-powered revenue recovery system that combines:
+
+- 🧠 Machine Learning based recovery prediction
+- 🤖 AI decision-agent logic
+- 🔍 Failure reason analysis
+- 🔄 Retry history analysis
+- 🛡️ Business guardrails
+- 💰 Recovery simulation
+- 📝 Audit logging
+- 📊 Interactive Streamlit dashboard
+
+The system processes failed transactions in batches and determines whether recovery should be attempted and which action should be taken.
+
+---
+
+## 🔄 Recovery Pipeline
+
+```text
+💳 Failed Transactions
+          ↓
+🔍 Transaction Analysis
+          ↓
+🧠 ML Recovery Prediction
+          ↓
+🤖 AI Decision Agent
+          ↓
 🛡️ Business Guardrails
-
-ReviveAI uses business guardrails to ensure that recovery attempts remain controlled and bounded.
-
-The system can stop recovery when:
-
-Maximum retry limit is reached
-Recovery probability is too low
-Customer recovery potential is too low
-
-Guardrail decisions are recorded in the audit trail.
-
-This helps prevent unnecessary retries and provides a clear explanation for why a transaction was stopped.
-
+          ↓
+⚡ Recovery Action
+          ↓
 💰 Recovery Simulation
+          ↓
+📝 Audit Logging
+          ↓
+📊 Dashboard
+```
 
-ReviveAI includes a recovery simulator that evaluates the outcome of the selected recovery action.
+---
 
-The simulator records:
+## 🤖 AI Decision System
 
-Whether recovery was attempted
-Whether recovery succeeded
-Simulated recovered amount
-Recovery outcome
+The AI decision agent acts as the decision layer after the ML prediction.
 
-The simulation allows the complete revenue recovery workflow to be demonstrated without processing real payments.
+It considers:
 
-📊 Interactive Dashboard
+- 📈 Recovery probability
+- ⚠️ Failure category and reason
+- 💵 Transaction amount
+- 🔄 Retry count
+- 👤 Customer recovery potential
+- 🛡️ Business rules
 
-The ReviveAI dashboard is built using Streamlit and provides an interactive control center for analyzing the recovery system.
+Based on these factors, the agent selects an appropriate recovery action.
 
-The dashboard contains three major sections.
+### ⚡ Available Actions
 
-📈 Recovery Overview
+- 🔄 Retry
+- ⏳ Retry After Delay
+- 📩 Send Payment Reminder
+- 🚨 Escalate
+- 💳 Suggest Alternate Payment Method
+- 🛑 Stop Recovery
 
-The Recovery Overview provides a high-level view of revenue recovery performance.
+The current implementation is a **lightweight and bounded decision-agent architecture** rather than a fully autonomous agent.
 
-It includes:
+---
 
-Total transactions
-Actionable transactions
-Expected recovery
-Simulated recovery
-Recovery rate
-Successful recoveries
-Transactions stopped by guardrails
-Total transaction value
-AI recovery potential
-Recovery by action
-Expected recovery by priority
-Recovery opportunity by failure category
-Recovery funnel
-Revenue protection
+## 🛡️ Business Guardrails
 
-The dashboard also provides filters for priority, failure category, and recovery action.
+ReviveAI applies safety and business controls before recovery actions are executed.
 
-🤖 Agent Intelligence
+### 🔐 Guardrails
 
-The Agent Intelligence section provides insight into how the recovery decision system behaves.
+- 🔄 Maximum Retry Limit
+- 📉 Low Recovery Probability
+- 👤 Low Customer Recovery Potential
 
-It includes:
+These controls prevent unnecessary recovery attempts and help reduce repeated retries.
 
-Agent action distribution
-Guardrail distribution
-Recovery action performance
-Top recovery opportunities
-Guardrail analysis
+### 📊 Guardrail Validation
 
-This helps users understand how ReviveAI converts recovery predictions into business actions.
+| 🛡️ Guardrail | 🔢 Transactions |
+|---|---:|
+| Maximum Retry Limit | 1,991 |
+| Low Recovery Probability | 1,292 |
+| Low Customer Recovery Potential | 906 |
 
-🔍 Transaction Explorer
+---
 
-The Transaction Explorer provides transaction-level AI explainability.
+## 💰 Recovery Simulation
 
-Users can search for a transaction using its Transaction ID.
+The recovery engine simulates the outcome of selected recovery actions.
 
-For each transaction, the dashboard displays:
+### 📊 Validation Results
 
-Transaction amount
-Recovery probability
-Expected recovery
-Priority
-Failure reason
-Failure category
-Payment method
-Retry count
-Recovery attempt status
-AI recommended action
-Decision reason
-Retry delay
-Guardrail
-Recovery outcome
+- 📦 **Transactions Processed:** 10,000
+- 🤖 **Recovery Decisions:** 10,000
+- ⚡ **Actionable Transactions:** 5,811
+- 🔄 **Recovery Attempts:** 5,811
+- ✅ **Successful Recoveries:** 3,397
+- 📈 **Recovery Rate:** 58.46%
+- 💰 **Simulated Revenue Recovered:** ₹6,386,814.48
+- 🎯 **Expected Recoverable Revenue:** ₹8,324,096.57
 
-The dashboard also provides an explanation of why ReviveAI selected a particular recovery decision.
+The simulation provides a measurable way to evaluate the effectiveness of the recovery strategy.
 
-📈 Project Results
+---
 
-ReviveAI was tested using a synthetic dataset containing 10,000 failed payment transactions.
+## 📊 Interactive Dashboard
 
-Overall Results
-Metric	Result
-Transactions Analyzed	10,000
-Actionable Transactions	5,811
-Successful Recoveries	3,397
-Recovery Rate	58.46%
-Expected Recoverable Revenue	₹83.24 L
-Simulated Recovered Revenue	₹63.87 L
-Total Transaction Value	₹185.57 L
-⚡ Recovery Action Distribution
-Recovery Action	Transactions
-Stop Recovery	4,189
-Retry After Delay	2,515
-Send Payment Reminder	1,837
-Retry	1,131
-Escalate	321
-Suggest Alternate Payment Method	7
-🛡️ Guardrail Results
-Guardrail	Transactions Stopped
-Maximum Retry Limit	1,991
-Low Recovery Probability	1,292
-Low Customer Recovery Potential	906
+The project includes an interactive **Streamlit dashboard** with three main sections.
 
-These guardrails demonstrate that ReviveAI does not attempt recovery without considering operational limits and recovery potential.
+### 📈 Recovery Overview
 
-🧠 Machine Learning
+Provides a high-level view of:
 
-ReviveAI uses a machine learning model for recovery-probability prediction.
+- 💳 Total transactions
+- 💰 Expected recoverable revenue
+- ⚡ Actionable transactions
+- 🔄 Recovery attempts
+- ✅ Successful recoveries
+- 💵 Simulated revenue recovered
+- 📈 Recovery rate
 
-The model analyzes transaction-level characteristics and produces a recovery probability between 0 and 1.
+### 🤖 Agent Intelligence
 
-The trained model is stored at:
+Shows:
 
+- 📈 Recovery probability distribution
+- 🎯 Recovery priority distribution
+- ⚡ Recovery action distribution
+- 🛡️ Guardrail activity
+- 📊 Recovery performance by action
+
+### 🔎 Transaction Explorer
+
+Allows individual transactions to be explored using filters such as:
+
+- 🎯 Recovery priority
+- ⚠️ Failure reason
+- ⚡ Recovery action
+- 💳 Transaction details
+- 📈 Recovery probability
+- 💰 Expected recovery value
+
+---
+
+## 🧪 10,000 Transaction Validation
+
+ReviveAI was tested on a synthetic dataset containing **10,000 failed payment transactions**.
+
+### 📋 Dataset Summary
+
+| 📌 Metric | 📊 Value |
+|---|---:|
+| 💳 Total Transactions | 10,000 |
+| 💰 Total Transaction Value | ₹18,556,720.41 |
+| 🎯 Expected Recoverable Revenue | ₹8,324,096.57 |
+| ⚡ Actionable Transactions | 5,811 |
+| 🛑 Stopped Transactions | 4,189 |
+| ✅ Successful Recoveries | 3,397 |
+| 💵 Simulated Revenue Recovered | ₹6,386,814.48 |
+| 📈 Recovery Rate | 58.46% |
+
+---
+
+## ⚡ Recovery Action Distribution
+
+| ⚡ Action | 🔢 Transactions |
+|---|---:|
+| 🛑 Stop Recovery | 4,189 |
+| ⏳ Retry After Delay | 2,515 |
+| 📩 Send Payment Reminder | 1,837 |
+| 🔄 Retry | 1,131 |
+| 🚨 Escalate | 321 |
+| 💳 Suggest Alternate Payment Method | 7 |
+
+---
+
+## 📊 Recovery Performance by Action
+
+| ⚡ Recovery Action | 🔄 Attempts | ✅ Successful | 📈 Recovery Rate |
+|---|---:|---:|---:|
+| 🚨 Escalate | 321 | 80 | 25% |
+| 🔄 Retry | 1,131 | 658 | 58% |
+| ⏳ Retry After Delay | 2,515 | 1,841 | 73% |
+| 📩 Send Payment Reminder | 1,837 | 812 | 44% |
+| 💳 Suggest Alternate Payment Method | 7 | 6 | 86% |
+
+---
+
+## 🧠 Machine Learning
+
+The ML component predicts the probability that a failed transaction can be successfully recovered.
+
+The prediction is used by the decision agent to determine the recovery priority and appropriate action.
+
+### 📤 Model Output
+
+Each transaction receives:
+
+- 📈 Recovery probability
+- 💰 Expected recovery value
+- 🎯 Recovery priority
+- ⚡ Recommended recovery action
+
+The trained model is stored in:
+
+```text
 models/recovery_prediction_model.pkl
+```
 
-Model comparison information is stored at:
+Model comparison results are stored in:
 
+```text
 models/model_comparison.csv
+```
 
-The predicted recovery probability is used by the decision agent to select the next recovery action.
+---
 
-🔄 End-to-End Workflow
-Failed Payment
-      ↓
-Transaction Analysis
-      ↓
-Recovery Probability Prediction
-      ↓
-AI Decision Agent
-      ↓
-Business Guardrail Check
-      ↓
-Recovery Action
-      ↓
-Recovery Simulation
-      ↓
-Audit Logging
-      ↓
-Dashboard Analytics
+## 🔗 End-to-End Workflow
 
-This creates a complete closed-loop revenue recovery workflow.
+1. 💳 Load failed payment transactions.
+2. 🔍 Analyze transaction and failure characteristics.
+3. 🧠 Predict recovery probability using the ML model.
+4. 💰 Estimate expected recoverable value.
+5. 🤖 Pass the prediction and transaction information to the decision agent.
+6. ⚡ Select the appropriate recovery action.
+7. 🛡️ Apply business guardrails.
+8. 🧪 Simulate the recovery outcome.
+9. 📝 Record the decision and outcome in the audit log.
+10. 📊 Display results through the Streamlit dashboard.
 
-🗂️ Project Structure
+---
+
+## 📁 Project Structure
+
+```text
 ReviveAI/
 │
-├── README.md
-├── .gitignore
+├── 📄 README.md
+├── ⚙️ .gitignore
 │
-├── dashboards/
+├── 📊 dashboards/
 │   └── app.py
 │
-├── data/
+├── 💾 data/
 │   ├── transactions.csv
 │   ├── agent_decisions.csv
 │   ├── recovery_results.csv
 │   ├── audit_log.csv
 │   └── generate_dataset.py
 │
-├── models/
+├── 🧠 models/
 │   ├── recovery_prediction_model.pkl
 │   └── model_comparison.csv
 │
-├── src/
+├── 🤖 src/
 │   ├── recovery_agent.py
 │   ├── recovery_simulator.py
 │   ├── batch_recovery_engine.py
@@ -214,116 +282,135 @@ ReviveAI/
 │   ├── train_recovery_model.py
 │   └── test_agent_batch.py
 │
-├── tests/
+├── 🧪 tests/
 │   └── capture_dashboard.py
 │
-└── docs/
+└── 🖼️ docs/
     ├── dashboard_overview.png
     ├── agent_intelligence.png
     └── transaction_explorer.png
-🖥️ Dashboard Screenshots
-Recovery Overview
+```
 
-Agent Intelligence
+---
 
-Transaction Explorer
+## 🖼️ Dashboard Screenshots
 
-⚙️ Technology Stack
-Python — Core development
-Pandas — Data processing
-NumPy — Numerical processing
-Scikit-learn — Machine learning
-Streamlit — Interactive dashboard
-SQLite — Transaction and audit storage
-Git — Version control
-GitHub — Repository and project hosting
-🚀 Running the Project
+### 📈 Recovery Overview
 
-Clone the repository:
+![ReviveAI Recovery Overview](docs/dashboard_overview.png)
 
+### 🤖 Agent Intelligence
+
+![ReviveAI Agent Intelligence](docs/agent_intelligence.png)
+
+### 🔎 Transaction Explorer
+
+![ReviveAI Transaction Explorer](docs/transaction_explorer.png)
+
+---
+
+## 🛠️ Technology Stack
+
+- 🐍 **Python** — Core implementation
+- 🧠 **Scikit-learn** — Machine learning
+- 🐼 **Pandas** — Data processing
+- 📊 **Streamlit** — Interactive dashboard
+- 💾 **Joblib** — Model persistence
+- 📄 **CSV** — Transaction, recovery, and audit data storage
+
+---
+
+## 🚀 Running the Project
+
+### 1️⃣ Clone the Repository
+
+```bash
 git clone https://github.com/naisha-nitin-uchil/ReviveAI.git
 cd ReviveAI
+```
 
-Install the required Python packages:
+### 2️⃣ Install Dependencies
 
-pip install streamlit pandas numpy scikit-learn
+```bash
+pip install pandas scikit-learn streamlit joblib
+```
 
-Run the dashboard:
+### 3️⃣ Run the Dashboard
 
+```bash
 streamlit run dashboards/app.py
+```
 
-The ReviveAI dashboard will open in your browser.
+The dashboard will open in the browser. 🌐
 
-🔎 Example Transaction Analysis
+---
 
-A failed transaction enters ReviveAI.
+## 🔍 Example Recovery Decision
 
-The system analyzes the transaction and predicts its recovery probability.
+A high-value failed transaction can be evaluated by the system using its failure reason, recovery probability, transaction value, and retry history.
 
-The decision agent evaluates the prediction together with the failure category, retry history, and configured business rules.
+### 💳 Example
 
-The guardrail layer determines whether recovery should continue.
+```text
+Transaction: TXN103618
+Amount: ₹18,532.75
+Failure Reason: Gateway Timeout
+Recovery Probability: 0.832
+Expected Recovery: ₹15,426.59
+Priority: HIGH
+Action: Retry After Delay
+```
 
-If recovery is allowed, the agent selects an appropriate action such as:
+This demonstrates how the prediction and decision layers work together to select a targeted recovery strategy.
 
-Retry
-Retry After Delay
-Send Payment Reminder
-Escalate
-Suggest Alternate Payment Method
+---
 
-If recovery should not continue:
+## 🛡️ Safety and Control
 
-Stop Recovery
+ReviveAI is designed around **bounded recovery decisions**.
 
-The recovery simulator then records the simulated outcome.
+The system does not blindly retry every failed transaction. Instead, it:
 
-Finally, the decision and outcome are stored in the audit trail and displayed through the dashboard.
+- 🔍 Evaluates recovery potential
+- 🎯 Selects targeted recovery actions
+- 🔄 Applies retry limits
+- 🛑 Stops low-potential recovery attempts
+- 📝 Records decisions and outcomes
+- 📋 Maintains an audit trail
 
-🔐 Safety and Control
+This provides a controlled approach to automated revenue recovery.
 
-ReviveAI is designed around controlled and explainable recovery.
+---
 
-The system uses:
+## ✅ Project Status
 
-Retry limits
-Recovery probability thresholds
-Customer recovery-potential checks
-Explicit stop decisions
-Audit logging
-Simulated recovery execution
+**🚀 Status: Working Prototype**
 
-These controls help demonstrate how AI can be used for revenue recovery while keeping automated actions bounded.
+The current prototype includes:
 
-📌 Project Status
+- 📊 Synthetic transaction dataset
+- 🧠 ML recovery prediction
+- 🤖 AI decision-agent layer
+- 🛡️ Business guardrails
+- ⚙️ Batch recovery engine
+- 🧪 Recovery simulation
+- 📝 Audit logging
+- 📊 Interactive Streamlit dashboard
+- 🔎 Transaction-level exploration
+- 🐙 GitHub-ready project structure
 
-ReviveAI currently includes:
+---
 
-Transaction analysis
-ML recovery-probability prediction
-AI recovery decision agent
-Recovery simulation
-Business guardrails
-Audit logging
-Batch recovery processing
-Interactive Streamlit dashboard
-Dashboard filtering
-Transaction-level AI explainability
-Recovery analytics
-Dashboard screenshots
-GitHub repository
-⚠️ Disclaimer
+## ⚠️ Disclaimer
 
-ReviveAI is a prototype built using synthetic transaction data.
+This project uses **synthetic transaction data** and **simulated recovery outcomes** for demonstration and evaluation purposes.
 
-Recovery outcomes are simulated and do not represent real payment recovery performance.
+It is not connected to real payment processing systems or real customer payment data.
 
-No real payment transactions are processed by this prototype.
+---
 
-👩‍💻 Project
+## 🏆 Project
 
-ReviveAI
+### 💰 ReviveAI — AI-Powered Revenue Recovery Decision Agent
 
-Track 3 — AI Revenue Recovery
-
-Built as an AI-powered revenue recovery prototype for the Razorpay AI Builder Internship 2026.
+Built for **Razorpay AI Builder Internship 2026 — Track 3: AI Revenue Recovery**. 🚀
