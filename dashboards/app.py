@@ -80,6 +80,16 @@ st.markdown(
         color: #a78bfa;
     }
 
+    /* Transparent selected filter tags */
+    div[data-baseweb="select"] span[data-baseweb="tag"] {
+        background-color: transparent !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    }
+
+    div[data-baseweb="select"] span[data-baseweb="tag"] span {
+        color: inherit !important;
+    }
+
     .online {
         color: #22c55e;
         font-weight: 600;
@@ -138,6 +148,22 @@ def load_data():
         "data/audit_log.csv",
         keep_default_na=False
     )
+
+    transactions = pd.read_csv(
+        "data/transactions.csv",
+        keep_default_na=False
+    )
+
+    if "payment_method" not in audit.columns and "payment_method" in transactions.columns:
+        payment_methods = transactions[
+            ["transaction_id", "payment_method"]
+        ].drop_duplicates("transaction_id")
+
+        audit = audit.merge(
+            payment_methods,
+            on="transaction_id",
+            how="left"
+        )
 
     # --------------------------------------------------------
     # Boolean conversion
@@ -316,7 +342,7 @@ with st.sidebar:
     selected_priorities = st.multiselect(
         "Priority",
         priority_options,
-        default=priority_options,
+        default=[],
         key=f"priority_filter_{filter_version}",
         label_visibility="collapsed"
     )
@@ -342,7 +368,7 @@ with st.sidebar:
     selected_failures = st.multiselect(
         "Failure Category",
         failure_options,
-        default=failure_options,
+        default=[],
         key=f"failure_filter_{filter_version}",
         label_visibility="collapsed"
     )
@@ -368,7 +394,7 @@ with st.sidebar:
     selected_actions = st.multiselect(
         "Recovery Action",
         action_options,
-        default=action_options,
+        default=[],
         key=f"action_filter_{filter_version}",
         label_visibility="collapsed"
     )
@@ -392,19 +418,25 @@ with st.sidebar:
 # APPLY FILTERS
 # ============================================================
 
-filtered_recovery = recovery[
-    recovery["priority"].isin(
-        selected_priorities
-    )
-    &
-    recovery["failure_category"].isin(
-        selected_failures
-    )
-    &
-    recovery["action"].isin(
-        selected_actions
-    )
-].copy()
+# Empty filters mean "All" — users can select only the filters they need.
+filtered_recovery = recovery.copy()
+
+if selected_priorities:
+    filtered_recovery = filtered_recovery[
+        filtered_recovery["priority"].isin(selected_priorities)
+    ]
+
+if selected_failures:
+    filtered_recovery = filtered_recovery[
+        filtered_recovery["failure_category"].isin(selected_failures)
+    ]
+
+if selected_actions:
+    filtered_recovery = filtered_recovery[
+        filtered_recovery["action"].isin(selected_actions)
+    ]
+
+filtered_recovery = filtered_recovery.copy()
 
 
 filtered_transaction_ids = set(
