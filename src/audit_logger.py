@@ -132,14 +132,15 @@ def create_audit_log():
     )
 
     # --------------------------------------------------------
-    # 8. RENAME RECOVERED AMOUNT
-    # --------------------------------------------------------
+# 8. USE SIMULATED RECOVERED AMOUNT
+# --------------------------------------------------------
 
-    audit = audit.rename(
-        columns={
-            "simulated_recovered_amount":
-                "recovered_amount"
-        }
+    audit["recovered_amount"] = audit[
+        "simulated_recovered_amount"
+    ]
+
+    audit = audit.drop(
+        columns=["simulated_recovered_amount"]
     )
 
     # --------------------------------------------------------
@@ -150,7 +151,6 @@ def create_audit_log():
         "decision_timestamp",
         "transaction_id",
         "amount",
-        "payment_method",
         "failure_reason",
         "failure_category",
         "retry_count",
