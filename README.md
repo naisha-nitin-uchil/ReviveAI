@@ -297,15 +297,15 @@ ReviveAI/
 
 ### 📈 Recovery Overview
 
-![ReviveAI Recovery Overview](docs/dashboard_overview.png)
+<img src="./docs/dashboard_overview.png" alt="ReviveAI Recovery Overview" width="900">
 
 ### 🤖 Agent Intelligence
 
-![ReviveAI Agent Intelligence](docs/agent_intelligence.png)
+<img src="./docs/agent_intelligence.png" alt="ReviveAI Agent Intelligence" width="900">
 
 ### 🔎 Transaction Explorer
 
-![ReviveAI Transaction Explorer](docs/transaction_explorer.png)
+<img src="./docs/transaction_explorer.png" alt="ReviveAI Transaction Explorer" width="900">
 
 ---
 
